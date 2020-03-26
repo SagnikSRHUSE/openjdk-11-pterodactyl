@@ -19,10 +19,9 @@ RUN apt-get update \
 ENV JAVA_VERSION jdk-11.0.6+10 
 
 # Config env vars
-
-ENV ESUM 7ed04ed9ed7271528e7f03490f1fd7dfbbc2d391414bd6fe4dd80ec3bad76d30'
+ENV ESUM '7ed04ed9ed7271528e7f03490f1fd7dfbbc2d391414bd6fe4dd80ec3bad76d30'
 ENV BINARY_URL 'https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.6%2B10/OpenJDK11U-jre_aarch64_linux_hotspot_11.0.6_10.tar.gz'
-    
+
 RUN curl -LfsSo /tmp/openjdk.tar.gz ${BINARY_URL}; \
     echo "${ESUM} */tmp/openjdk.tar.gz" | sha256sum -c -; \
     mkdir -p /opt/java/openjdk; \
@@ -30,9 +29,8 @@ RUN curl -LfsSo /tmp/openjdk.tar.gz ${BINARY_URL}; \
     tar -xf /tmp/openjdk.tar.gz --strip-components=1; \
     rm -rf /tmp/openjdk.tar.gz;
 
-ENV JAVA_HOME=/opt/java/openjdk \
-    PATH="/opt/java/openjdk/bin:$PATH"
-
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH="/opt/java/openjdk/bin:$PATH"
 
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
@@ -45,4 +43,3 @@ WORKDIR /home/container
 COPY ./entrypoint.sh /entrypoint.sh
 
 CMD ["/bin/bash", "/entrypoint.sh"]
-    
