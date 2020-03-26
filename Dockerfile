@@ -10,9 +10,7 @@ RUN apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get autoremove -y \
     && apt-get autoclean \
-    && apt-get -y install curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 \
-    && apt-get -y install ffmpeg libmp3lame-dev x264 \
-    && apt-get -y install sqlite3 libsqlite3-dev \
+    && apt-get -y install curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 locales \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/* \
